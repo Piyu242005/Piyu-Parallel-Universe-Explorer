@@ -8,6 +8,7 @@ import { Galaxy } from "./Galaxy";
 import { Particles } from "./Particles";
 import { SolarSystem } from "./SolarSystem";
 import { Wormhole } from "./Wormhole";
+import { ParallelUniverse } from "./ParallelUniverse";
 import { CameraController } from "./CameraController";
 
 export function UniverseScene() {
@@ -22,24 +23,15 @@ export function UniverseScene() {
       }}
     >
       <fog attach="fog" args={["#000000", 45, 145]} />
-
       <ambientLight intensity={0.15} />
-      <Stars
-        radius={120}
-        depth={80}
-        count={1600}
-        factor={2}
-        saturation={0}
-        fade
-        speed={0.18}
-      />
-
+      <Stars radius={120} depth={80} count={1600} factor={2} saturation={0} fade speed={0.18} />
       <StarField />
       <Nebula />
       <Galaxy />
       <Particles />
       <SolarSystem />
       <Wormhole />
+      <ParallelUniverse />
       <CameraController />
     </Canvas>
   );

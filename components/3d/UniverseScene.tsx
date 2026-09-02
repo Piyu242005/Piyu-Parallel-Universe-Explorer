@@ -6,8 +6,9 @@ import { StarField } from "./StarField";
 import { Nebula } from "./Nebula";
 import { Galaxy } from "./Galaxy";
 import { Particles } from "./Particles";
-import { CameraController } from "./CameraController";
 import { SolarSystem } from "./SolarSystem";
+import { Wormhole } from "./Wormhole";
+import { CameraController } from "./CameraController";
 
 export function UniverseScene() {
   return (
@@ -38,6 +39,7 @@ export function UniverseScene() {
       <Galaxy />
       <Particles />
       <SolarSystem />
+      <Wormhole />
       <CameraController />
     </Canvas>
   );

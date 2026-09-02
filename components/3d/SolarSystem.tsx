@@ -1,5 +1,6 @@
 "use client";
 
+import { Line } from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -26,16 +27,7 @@ function Orbit({ radius }: { radius: number }) {
     return result;
   }, [radius]);
 
-  const geometry = useMemo(() => {
-    const buffer = new THREE.BufferGeometry().setFromPoints(points);
-    return buffer;
-  }, [points]);
-
-  return (
-    <line geometry={geometry}>
-      <lineBasicMaterial color="#6d7fb5" transparent opacity={0.18} depthWrite={false} />
-    </line>
-  );
+  return <Line points={points} color="#6d7fb5" transparent opacity={0.18} />;
 }
 
 function Planet({
@@ -101,7 +93,13 @@ function Sun() {
       </mesh>
       <mesh scale={1.8}>
         <sphereGeometry args={[1.25, 32, 32]} />
-        <meshBasicMaterial color="#ff9f43" transparent opacity={0.08} blending={THREE.AdditiveBlending} depthWrite={false} />
+        <meshBasicMaterial
+          color="#ff9f43"
+          transparent
+          opacity={0.08}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
       </mesh>
       <pointLight intensity={18} distance={100} decay={2} color="#ffd27c" />
     </group>

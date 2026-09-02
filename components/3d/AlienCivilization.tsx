@@ -123,7 +123,10 @@ function SkyBeam() {
   useFrame((state) => {
     if (!ref.current) return;
     ref.current.scale.x = 0.95 + Math.sin(state.clock.elapsedTime * 0.8) * 0.08;
-    ref.current.material.opacity = 0.035 + Math.sin(state.clock.elapsedTime * 1.3) * 0.012;
+    const material = ref.current.material;
+    if (!Array.isArray(material)) {
+      material.opacity = 0.035 + Math.sin(state.clock.elapsedTime * 1.3) * 0.012;
+    }
   });
 
   return (

@@ -29,9 +29,7 @@ export function StarField() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={STAR_COUNT}
-          array={positions}
-          itemSize={3}
+          args={[positions, 3]}
         />
       </bufferGeometry>
       <pointsMaterial

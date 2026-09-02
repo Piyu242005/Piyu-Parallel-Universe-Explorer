@@ -38,15 +38,11 @@ export function Galaxy() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={GALAXY_COUNT}
-            array={positions}
-            itemSize={3}
+            args={[positions, 3]}
           />
           <bufferAttribute
             attach="attributes-color"
-            count={GALAXY_COUNT}
-            array={colors}
-            itemSize={3}
+            args={[colors, 3]}
           />
         </bufferGeometry>
         <pointsMaterial

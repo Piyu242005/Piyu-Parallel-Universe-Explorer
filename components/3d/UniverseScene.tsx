@@ -10,6 +10,7 @@ import { SolarSystem } from "./SolarSystem";
 import { Wormhole } from "./Wormhole";
 import { ParallelUniverse } from "./ParallelUniverse";
 import { AlienPlanet } from "./AlienPlanet";
+import { AlienCivilization } from "./AlienCivilization";
 import { CameraController } from "./CameraController";
 
 export function UniverseScene() {
@@ -34,6 +35,7 @@ export function UniverseScene() {
       <Wormhole />
       <ParallelUniverse />
       <AlienPlanet />
+      <AlienCivilization />
       <CameraController />
     </Canvas>
   );

@@ -7,6 +7,7 @@ import { Nebula } from "./Nebula";
 import { Galaxy } from "./Galaxy";
 import { Particles } from "./Particles";
 import { CameraController } from "./CameraController";
+import { SolarSystem } from "./SolarSystem";
 
 export function UniverseScene() {
   return (
@@ -36,6 +37,7 @@ export function UniverseScene() {
       <Nebula />
       <Galaxy />
       <Particles />
+      <SolarSystem />
       <CameraController />
     </Canvas>
   );

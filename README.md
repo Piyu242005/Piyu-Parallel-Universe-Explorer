@@ -45,6 +45,30 @@ Implemented as a real-time React Three Fiber scene:
 - ✅ Space background — black renderer clear color + atmospheric fog
 - ✅ Home page integration — scene renders at full viewport
 
+## Vercel Development Requirements
+
+The repository is prepared for Vercel deployment:
+
+- ✅ Next.js framework detected/configured
+- ✅ Node.js 22 requirement defined in `package.json`
+- ✅ `.nvmrc` pins Node.js 22 for local development
+- ✅ `vercel.json` declares the Next.js framework
+- ✅ `.gitignore` excludes `.next`, `.vercel`, dependencies, logs, and environment files
+- ✅ Production build command: `npm run build`
+- ✅ Start command: `npm run start`
+- ⚠️ Keep secrets in Vercel Environment Variables; never commit `.env*` files
+- ⚠️ Use a committed package-lock/pnpm-lock/yarn.lock for reproducible dependency installs before production hardening
+
+### Local Vercel-ready checks
+
+```bash
+npm install
+npm run build
+npm run start
+```
+
+After connecting the repository to Vercel, pushes to `main` can be used for production deployments and other branches can generate preview deployments.
+
 ## Project Structure
 
 ```text
@@ -69,10 +93,13 @@ public/
 lib/
 data/
 styles/
+vercel.json
+.nvmrc
+.gitignore
 ```
 
 ## Current Status
 
 **Phase 2 — Space Environment Complete**
 
-The project now has a functional procedural 3D universe foundation. The next phase is the cinematic landing experience.
+The project now has a functional procedural 3D universe foundation and is prepared for Vercel deployment. The next phase is the cinematic landing experience.

@@ -35,15 +35,11 @@ export function Nebula() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={NEBULA_COUNT}
-          array={positions}
-          itemSize={3}
+          args={[positions, 3]}
         />
         <bufferAttribute
           attach="attributes-color"
-          count={NEBULA_COUNT}
-          array={colors}
-          itemSize={3}
+          args={[colors, 3]}
         />
       </bufferGeometry>
       <pointsMaterial

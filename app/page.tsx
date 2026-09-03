@@ -8,6 +8,10 @@ export default function Home() {
       <UniverseScene />
       <AIInteraction />
       <ExplorationSystem />
+      <div className="creator-mark" aria-label="Created by Piyush Ramteke">
+        <span>CREATED BY</span>
+        <strong>PIYUSH RAMTEKE</strong>
+      </div>
       <div className="vignette" aria-hidden="true" />
       <div className="scanlines" aria-hidden="true" />
     </main>

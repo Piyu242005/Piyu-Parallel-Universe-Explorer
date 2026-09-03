@@ -1,24 +1,43 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
 import * as THREE from "three";
 
+type NavigationDetail = {
+  position: [number, number, number];
+  focus: [number, number, number];
+  id?: string;
+};
+
 export function CameraController() {
-  const target = useRef(new THREE.Vector3());
+  const destination = useRef(new THREE.Vector3(0, 0, 18));
+  const lookTarget = useRef(new THREE.Vector3(0, 0, -10));
+  const idleLook = useRef(new THREE.Vector3());
+
+  useEffect(() => {
+    const onNavigate = (event: Event) => {
+      const detail = (event as CustomEvent<NavigationDetail>).detail;
+      if (!detail?.position || !detail?.focus) return;
+      destination.current.set(...detail.position);
+      lookTarget.current.set(...detail.focus);
+    };
+
+    window.addEventListener("explorer:navigate", onNavigate);
+    return () => window.removeEventListener("explorer:navigate", onNavigate);
+  }, []);
 
   useFrame(({ camera, clock }, delta) => {
     const t = clock.getElapsedTime();
-    target.current.set(
-      Math.sin(t * 0.18) * 1.5,
-      Math.cos(t * 0.13) * 0.8,
-      0,
+    idleLook.current.set(
+      lookTarget.current.x + Math.sin(t * 0.18) * 1.5,
+      lookTarget.current.y + Math.cos(t * 0.13) * 0.8,
+      lookTarget.current.z,
     );
 
-    camera.position.x += (target.current.x - camera.position.x) * delta * 0.5;
-    camera.position.y += (target.current.y - camera.position.y) * delta * 0.5;
-    camera.position.z += ((18 + Math.sin(t * 0.08) * 1.5) - camera.position.z) * delta * 0.25;
-    camera.lookAt(0, 0, -10);
+    const damping = 1 - Math.exp(-delta * 2.2);
+    camera.position.lerp(destination.current, damping);
+    camera.lookAt(idleLook.current);
   });
 
   return null;

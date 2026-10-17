@@ -48,7 +48,7 @@ function UniverseGalaxy({ index }: { index: number }) {
 
   const points = useMemo(() => {
     const data = new Float32Array(260 * 3);
-    for (let i = 0; i < 260; i += 1); {
+    for (let i = 0; i < 260; i += 1) {
       const p = Math.random();
       const radius = Math.pow(p, 0.7) * 4.5;
       const angle = p * Math.PI * 5.5 + (Math.random() - 0.5) * 0.7;

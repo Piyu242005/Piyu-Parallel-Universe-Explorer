@@ -69,3 +69,107 @@ button { font: inherit; }
 @media (max-width: 900px) { .exploration-system { top: 82px; left: 12px; width: min(300px, calc(100vw - 24px)); } .ai-scan-card { top: 82px; right: 12px; } .ai-console { left: 12px; bottom: 12px; width: calc(100vw - 24px); } .creator-mark { right: 12px; bottom: 12px; } }
 @media (max-width: 700px) { .ai-topbar { top: 12px; left: 12px; right: 12px; } .ai-brand { padding: 8px 10px; } .ai-brand small { display: none; } .ai-status { font-size: 8px; padding: 8px; } .ai-scan-card { display: none; } .exploration-system { top: 70px; left: 12px; width: calc(100vw - 24px); } .exploration-map { grid-template-columns: 1fr 1fr; } .exploration-detail { display: none; } .exploration-footer { margin-top: 7px; } .ai-console { padding: 12px; } .ai-console p { font-size: 10px; } .creator-mark { bottom: 108px; right: 12px; } }
 @media (prefers-reduced-motion: reduce) { .exploration-live i { animation: none; } .ai-actions button, .exploration-map button, .exploration-enter { transition: none; } }
+
+/* UX pass: make the universe the hero, keep controls in one predictable layer. */
+.ai-interface { letter-spacing: .045em; }
+.ai-topbar { z-index: 3; }
+.exploration-system { z-index: 4; }
+.ai-console { z-index: 5; }
+.creator-mark { z-index: 6; }
+
+/* Prefer clearer hierarchy and readable labels over tiny terminal text. */
+.ai-brand strong { font-size: 12px; letter-spacing: .06em; }
+.ai-brand small { font-size: 9px; }
+.ai-status { font-size: 10px; }
+.exploration-kicker, .exploration-live, .exploration-detail-top,
+.exploration-coords, .exploration-footer, .ai-card-label,
+.ai-metric, .ai-console-header { font-size: 9px; }
+.exploration-header strong { font-size: 13px; }
+.exploration-map button { min-height: 38px; border-radius: 7px; }
+.exploration-map b { width: 44px; font-size: 9px; }
+.exploration-map span:last-child { font-size: 10px; }
+.ai-actions button { min-height: 36px; border-radius: 7px; font-size: 10px; }
+.exploration-enter { min-height: 40px; border-radius: 7px; font-size: 10px; }
+.ai-console p { font-size: 12px; }
+.exploration-detail p { font-size: 10px; }
+
+/* Wide screens: a left navigator, right telemetry, bottom-left command console. */
+@media (min-width: 1101px) {
+  .exploration-system { top: 94px; left: 24px; width: 310px; }
+  .ai-scan-card { top: 94px; right: 24px; }
+  .ai-console { bottom: 24px; left: 24px; width: min(490px, calc(100vw - 48px)); }
+}
+
+/* Tablet: stop the side panels competing for the same horizontal space. */
+@media (min-width: 701px) and (max-width: 1100px) {
+  .ai-topbar { top: 14px; left: 14px; right: 14px; }
+  .exploration-system { top: 78px; left: 14px; width: min(288px, calc(50vw - 22px)); }
+  .ai-scan-card { top: 78px; right: 14px; width: min(180px, calc(44vw - 22px)); }
+  .ai-console { left: 14px; bottom: 14px; width: min(470px, calc(100vw - 28px)); }
+  .creator-mark { right: 14px; bottom: 14px; }
+}
+
+/* Mobile: compact top bar + single bottom sheet with navigator and AI actions.
+   The scene remains visible in the center; panels scroll when the viewport is short. */
+@media (max-width: 700px) {
+  body { overflow: hidden; }
+  .ai-interface { overflow: visible; }
+  .ai-topbar { top: 10px; left: 10px; right: 10px; }
+  .ai-brand { gap: 8px; max-width: calc(100% - 112px); padding: 9px 10px; border-radius: 12px; }
+  .ai-brand strong { font-size: 10px; white-space: nowrap; }
+  .ai-brand small { display: none; }
+  .ai-status { gap: 6px; padding: 9px; font-size: 8px; white-space: nowrap; border-radius: 12px; }
+  .exploration-system {
+    top: auto; left: 10px; right: 10px; bottom: 10px;
+    width: auto; max-height: min(48dvh, 370px); overflow-y: auto;
+    padding: 12px; border-radius: 16px;
+    background: rgba(3, 8, 15, .9);
+    border: 1px solid rgba(111,233,255,.32);
+    box-shadow: 0 14px 44px rgba(0,0,0,.42), 0 0 28px rgba(0,180,255,.08);
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  .exploration-header { align-items: center; padding-bottom: 9px; }
+  .exploration-kicker { margin-bottom: 3px; }
+  .exploration-header strong { font-size: 12px; }
+  .exploration-map { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; margin-top: 8px; }
+  .exploration-map button { min-width: 0; min-height: 40px; padding: 8px 7px; gap: 6px; border-radius: 8px; }
+  .exploration-map b { width: auto; margin-right: 5px; font-size: 8px; }
+  .exploration-map span:last-child { min-width: 0; font-size: 9px; line-height: 1.35; overflow-wrap: anywhere; }
+  .exploration-detail { display: block; margin-top: 8px; padding: 10px; border-radius: 10px; }
+  .exploration-detail h2 { margin: 7px 0 5px; font-size: 14px; }
+  .exploration-detail p { min-height: 0; font-size: 10px; line-height: 1.5; }
+  .exploration-coords { margin-top: 8px; padding-top: 7px; }
+  .exploration-enter { margin-top: 8px; }
+  .exploration-footer { margin-top: 8px; font-size: 8px; }
+  .ai-console {
+    top: 64px; bottom: auto; left: 10px; right: 10px;
+    width: auto; padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(3, 8, 15, .74);
+    box-shadow: 0 10px 30px rgba(0,0,0,.24);
+  }
+  .ai-console-header { padding-bottom: 7px; font-size: 9px; }
+  .ai-console p { min-height: 0; margin: 8px 0; font-size: 10px; line-height: 1.45; }
+  .ai-actions { gap: 6px; }
+  .ai-actions button { flex: 1 1 auto; min-height: 34px; padding: 8px 9px; font-size: 9px; }
+  .ai-crosshair { top: 44%; }
+  .creator-mark { right: 12px; bottom: auto; top: 47%; padding: 7px 8px; }
+  .creator-mark span { font-size: 6px; }
+  .creator-mark strong { font-size: 8px; }
+}
+
+/* Short screens have a smaller top console and a more compact navigator. */
+@media (max-width: 700px) and (max-height: 720px) {
+  .ai-console { top: 60px; }
+  .ai-console p { display: none; }
+  .exploration-system { max-height: 46dvh; padding: 10px; }
+  .exploration-detail p, .exploration-coords { display: none; }
+  .exploration-detail h2 { font-size: 12px; }
+  .exploration-enter { min-height: 34px; }
+  .exploration-map button { min-height: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}

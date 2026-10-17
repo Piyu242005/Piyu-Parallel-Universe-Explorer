@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import * as THREE from "three";
 
-const NEBULA_COUNT = 1200;
+const NEBULA_COUNT = 700;
 
 export function Nebula() {
   const { positions, colors } = useMemo(() => {

@@ -173,3 +173,28 @@ button { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
 }
+
+
+/* Small enhancements: stable focus states, safer area on edge-to-edge phones,
+   and avoid costly blur/scanline effects when users prefer reduced motion. */
+:focus-visible {
+  outline: 2px solid #72e9ff;
+  outline-offset: 3px;
+}
+.ai-console, .exploration-system {
+  -webkit-backdrop-filter: blur(10px);
+}
+@supports (padding: max(0px)) {
+  .ai-topbar {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  @media (max-width: 700px) {
+    .exploration-system {
+      bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scanlines { display: none; }
+  .ai-console, .exploration-system { -webkit-backdrop-filter: none; backdrop-filter: none; }
+}

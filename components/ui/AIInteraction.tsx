@@ -6,11 +6,12 @@ const commands = [
   { label: "SCAN PLANET", response: "Planetary scan complete. Biosphere detected. Surface energy activity: 87%." },
   { label: "SCAN CITY", response: "Civilization scan complete. 14 primary structures and 18 orbital drones detected." },
   { label: "ANALYZE WORMHOLE", response: "Wormhole stable. Dimensional transit window is open." },
+  { label: "QUICK DIAGNOSTIC", response: "All navigation sectors responding. Rendering mode adaptive. Exploration systems nominal." },
 ];
 
 export function AIInteraction() {
   const [activeCommand, setActiveCommand] = useState("SYSTEM READY");
-  const [response, setResponse] = useState("Awaiting exploration command. AI navigation core is online.");
+  const [response, setResponse] = useState("Welcome to Piyu.OS Universe. Select a sector below or run a system scan to start exploring.");
 
   const telemetry = useMemo(
     () => [
@@ -33,7 +34,7 @@ export function AIInteraction() {
         <div className="ai-brand">
           <span className="ai-orb" />
           <div>
-            <strong>PIYU // EXPLORATION AI</strong>
+            <strong>PIYU.OS // UNIVERSE</strong>
             <small>QUANTUM NAVIGATION CORE · ONLINE</small>
           </div>
         </div>
@@ -55,7 +56,7 @@ export function AIInteraction() {
           <span>AI CONSOLE</span>
           <span className="ai-command">{activeCommand}</span>
         </div>
-        <p>{response}</p>
+        <p aria-live="polite">{response}</p>
         <div className="ai-actions">
           {commands.map((command) => (
             <button

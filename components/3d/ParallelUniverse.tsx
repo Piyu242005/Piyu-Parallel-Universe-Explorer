@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
-const STAR_COUNT = 2600;
+const STAR_COUNT = 1600;
 const GALAXY_COUNT = 7;
 
 function AlternateStars() {
@@ -47,8 +47,8 @@ function UniverseGalaxy({ index }: { index: number }) {
   });
 
   const points = useMemo(() => {
-    const data = new Float32Array(380 * 3);
-    for (let i = 0; i < 380; i += 1) {
+    const data = new Float32Array(260 * 3);
+    for (let i = 0; i < 260; i += 1) {
       const p = Math.random();
       const radius = Math.pow(p, 0.7) * 4.5;
       const angle = p * Math.PI * 5.5 + (Math.random() - 0.5) * 0.7;

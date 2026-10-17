@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import * as THREE from "three";
 
-const STAR_COUNT = 4500;
+const STAR_COUNT = 3000;
 
 export function StarField() {
   const positions = useMemo(() => {

@@ -1,7 +1,7 @@
 "use client";
 
+import { AdaptiveDpr, Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Stars } from "@react-three/drei";
 import { StarField } from "./StarField";
 import { Nebula } from "./Nebula";
 import { Galaxy } from "./Galaxy";
@@ -18,15 +18,18 @@ export function UniverseScene() {
     <Canvas
       className="universe-canvas"
       camera={{ position: [0, 0, 18], fov: 60, near: 0.1, far: 250 }}
-      dpr={[1, 2]}
-      gl={{ antialias: true, powerPreference: "high-performance" }}
+      dpr={[1, 1.5]}
+      gl={{ antialias: false, powerPreference: "high-performance", alpha: false }}
+      performance={{ min: 0.65 }}
       onCreated={({ gl }) => {
         gl.setClearColor("#000000", 1);
+        gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       }}
     >
+      <AdaptiveDpr pixelated />
       <fog attach="fog" args={["#000000", 45, 145]} />
       <ambientLight intensity={0.15} />
-      <Stars radius={120} depth={80} count={1600} factor={2} saturation={0} fade speed={0.18} />
+      <Stars radius={120} depth={80} count={900} factor={2} saturation={0} fade speed={0.18} />
       <StarField />
       <Nebula />
       <Galaxy />
